@@ -20,6 +20,7 @@ export const Env = {
 	// You need to destructure all the keys manually
 	runtimeEnv: {
 		ARCJET_KEY: process.env.ARCJET_KEY,
+		API_URL: process.env.REACT_APP_API_URL ?? process.env.NEXT_PUBLIC_API_URL,
 		HELPDICE_API_KEY:
 			process.env.REACT_APP_HELPDICE_API_KEY ??
 			process.env.NEXT_PUBLIC_HELPDICE_API_KEY,

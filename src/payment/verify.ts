@@ -1,3 +1,4 @@
+import type { AxiosRequestConfig } from "axios";
 import { post } from "../config/axios.js";
 import handler from "../config/handler.js";
 import { getUrl } from "../config/route.js";
@@ -17,7 +18,7 @@ const verify = (
 		onSuccess?: (data: SuccessProps) => void;
 		onError?: (error: string) => void;
 		onSettled?: () => void;
-		config?: never;
+		config?: AxiosRequestConfig<unknown>;
 	},
 ) => {
 	return handler(post(getUrl("payment", "v1", "verify"), data, config), {

@@ -1,12 +1,3 @@
-export const DEBUG = true;
-export const MAINTENANCE = false;
-export const AD_BLOCK_DETECT = false;
-export const API_URL = DEBUG
-	? "http://localhost:8000"
-	: "https://app.helpdice.com";
-export const BASE_URL = DEBUG
-	? "http://localhost:3000"
-	: "https://helpdice.com";
 export const SITE_NAME = "Helpdice";
 export const TOKEN_KEY = "access-token";
 export const REFRESH_TOKEN_KEY = "refresh-token";

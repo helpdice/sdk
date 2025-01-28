@@ -1,8 +1,7 @@
-import type { AxiosResponse } from "axios";
+import type { AxiosRequestConfig, AxiosResponse } from "axios";
 import axios from "axios";
 
 import {
-	API_URL,
 	REFRESH_TOKEN_KEY,
 	TOKEN_KEY,
 	// TOKEN_THRESHOLD_KEY,
@@ -15,7 +14,7 @@ import { getCookie } from "../utils/auth.js";
 import { Env } from "./Env.js";
 
 export const http = axios.create({
-	baseURL: API_URL,
+	baseURL: Env.runtimeEnv.API_URL,
 	withCredentials: true,
 	headers: {
 		"Access-Control-Allow-Origin": "*",
@@ -24,7 +23,7 @@ export const http = axios.create({
 });
 
 export const chttp = axios.create({
-	baseURL: API_URL,
+	baseURL: Env.runtimeEnv.API_URL,
 	withCredentials: true,
 	headers: {
 		"Access-Control-Allow-Origin": "*",
@@ -35,7 +34,7 @@ export const chttp = axios.create({
 export const post = (
 	endpoint: string,
 	data?: unknown,
-	config?: object,
+	config?: AxiosRequestConfig<unknown>,
 ): Promise<AxiosResponse> =>
 	new Promise((resolve, reject) =>
 		http
@@ -46,7 +45,7 @@ export const post = (
 
 export const get = (
 	endpoint: string,
-	config?: object,
+	config?: AxiosRequestConfig<unknown>,
 ): Promise<AxiosResponse> =>
 	new Promise((resolve, reject) =>
 		http

@@ -14,7 +14,7 @@ export interface SuccessProps {
 export interface StartSuccessProp {
 	_id: string;
 	options: {
-		handler: (res: never) => void;
+		handler: (res: unknown) => void;
 	};
 	method: string;
 }
@@ -42,7 +42,7 @@ const start = (
 			const data: StartSuccessProp = res.data as StartSuccessProp;
 			if (data?.method === "RazorPay") {
 				const options = data.options;
-				options.handler = async (response: never) => {
+				options.handler = async (response: unknown) => {
 					// toast.dismiss();
 					const body: VerifyPayment = {
 						id: data._id,

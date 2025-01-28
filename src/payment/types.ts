@@ -4,17 +4,17 @@ type Method = {
 };
 
 type Payment = {
-	data: never;
+	data: unknown;
 	token: string;
 	method: Method;
 	amount: string | number;
-	entity: never;
+	entity: unknown;
 	term: number;
 };
 
 type VerifyPayment = {
 	id: string;
-	payment: never;
+	payment: unknown;
 };
 
 export type { Payment, Method, VerifyPayment };
