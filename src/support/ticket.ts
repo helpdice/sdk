@@ -3,7 +3,7 @@ import handler from "../config/handler.js";
 import { getUrl } from "../config/route.js";
 
 const ticket = (
-	data: never,
+	data: unknown,
 	{
 		config,
 		onFetching,
@@ -15,7 +15,7 @@ const ticket = (
 		onSuccess?: (data: object) => void;
 		onError?: (error: string) => void;
 		onSettled?: () => void;
-		config?: { params: never };
+		config?: { params: unknown };
 	},
 ) => {
 	return handler(post(getUrl("support", "v1", "ticket"), data, config), {
