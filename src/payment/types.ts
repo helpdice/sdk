@@ -1,24 +1,20 @@
 type Method = {
-   label: string, // Paypal, RazorPay, Stripe
-   currency: number | string
-}
+	label: string; // Paypal, RazorPay, Stripe
+	currency: number | string;
+};
 
 type Payment = {
-    data: any,
-    token: string,
-    method: Method,
-    amount: string | number,
-    entity: any,
-    term: number
-}
+	data: never;
+	token: string;
+	method: Method;
+	amount: string | number;
+	entity: never;
+	term: number;
+};
 
 type VerifyPayment = {
-    id: string,
-    payment: any
-}
+	id: string;
+	payment: never;
+};
 
-export type {
-    Payment,
-    Method,
-    VerifyPayment
-}
+export type { Payment, Method, VerifyPayment };

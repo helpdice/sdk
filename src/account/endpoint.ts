@@ -1,7 +1,7 @@
 const account = {
-    v1: {
-        profile: "profile"
-    }
-}
+	v1: {
+		profile: "profile",
+	},
+};
 
 export default account;

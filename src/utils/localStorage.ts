@@ -1,20 +1,20 @@
-import CryptoJS from 'crypto-js';
+import CryptoJS from "crypto-js";
 
 /**
  * Function to set encryption key
  * @param {string} key - encryption key name
  * @param {string} value string value to be set as encryption key
  */
-export function setEncryptionKey(key: any, value: any) {
-    if (key && value) {
-        const sha256Key = CryptoJS.SHA256(key).toString();
-        // console.log('setting key: ', key, value);
-        const sha256Data = CryptoJS.SHA256(value).toString();
+export function setEncryptionKey(key: string, value: string) {
+	if (key && value) {
+		const sha256Key = CryptoJS.SHA256(key).toString();
+		// console.log('setting key: ', key, value);
+		const sha256Data = CryptoJS.SHA256(value).toString();
 
-        localStorage.setItem(sha256Key, JSON.stringify(sha256Data));
-    } else {
-        console.error('No data provided');
-    }
+		localStorage.setItem(sha256Key, JSON.stringify(sha256Data));
+	} else {
+		console.error("No data provided");
+	}
 }
 
 /**
@@ -24,17 +24,17 @@ export function setEncryptionKey(key: any, value: any) {
  */
 // eslint-disable-next-line consistent-return
 export function getEncryptionKey(key: string) {
-    try {
-        const shaKey = CryptoJS.SHA256(key).toString();
-        // console.log('getting key: ', key, localStorage.getItem(shaKey));
-        return localStorage.getItem(shaKey);
-    } catch (err) {
-        console.error('something went wrong man hoho');
-    }
+	try {
+		const shaKey = CryptoJS.SHA256(key).toString();
+		// console.log('getting key: ', key, localStorage.getItem(shaKey));
+		return localStorage.getItem(shaKey);
+	} catch (err) {
+		console.error("something went wrong man hoho");
+	}
 }
 
 export function daysCountInMonth(month: number, year: number) {
-    return new Date(year, month, 0).getDate();
+	return new Date(year, month, 0).getDate();
 }
 
 /**
@@ -44,22 +44,25 @@ export function daysCountInMonth(month: number, year: number) {
  * @param {*} data actual data to be stored with the provided key
  * @param {boolean} [useEmployeeKey] - flag to decide which encyption key to use, (employee's or admin's)
  */
-export function setDataInStorage(key: any, data: any) {
-    // Encrypt key
-    const shaKey = CryptoJS.SHA256(key).toString();
+export function setDataInStorage(key: string, data: string | object) {
+	// Encrypt key
+	const shaKey = CryptoJS.SHA256(key).toString();
 
-    const encKeyName = 'account_key';
+	const encKeyName = "account_key";
 
-    const encryptionKey = getEncryptionKey(encKeyName);
+	const encryptionKey = getEncryptionKey(encKeyName);
 
-    // console.log('setting data: ', encryption_key, key, shaKey, data);
+	// console.log('setting data: ', encryption_key, key, shaKey, data);
 
-    if (encryptionKey) {
-        // Encrypt data
-        const dataCipher = CryptoJS.AES.encrypt(JSON.stringify(data), encryptionKey).toString();
+	if (encryptionKey) {
+		// Encrypt data
+		const dataCipher = CryptoJS.AES.encrypt(
+			JSON.stringify(data),
+			encryptionKey,
+		).toString();
 
-        localStorage.setItem(shaKey, JSON.stringify(dataCipher));
-    }
+		localStorage.setItem(shaKey, JSON.stringify(dataCipher));
+	}
 }
 
 /**
@@ -70,52 +73,67 @@ export function setDataInStorage(key: any, data: any) {
  * @returns {*} value associated with the key
  */
 // eslint-disable-next-line consistent-return
-export function getDataFromStorage(key: any) {
-    try {
-        const shaKey = CryptoJS.SHA256(key).toString();
+export function getDataFromStorage(key: string) {
+	try {
+		const shaKey = CryptoJS.SHA256(key).toString();
 
-        const encKeyName = 'account_key';
+		const encKeyName = "account_key";
 
-        const encryptionKey = getEncryptionKey(encKeyName);
+		const encryptionKey = getEncryptionKey(encKeyName);
 
-        // console.log(
-        //   'from getting data: ',
-        //   key,
-        //   'encryption-key',
-        //   typeof encryption_key,
-        //   encryption_key
-        // );
-        if (encryptionKey && shaKey) {
-            const ciphertext = JSON.parse(String(localStorage.getItem(shaKey)));
-            if (ciphertext) {
-                // Decrypt
-                const bytes = CryptoJS.AES.decrypt(ciphertext, encryptionKey);
-                const originalData = bytes.toString(CryptoJS.enc.Utf8);
-                // console.log('getting data: ', key, shaKey, originalData);
-                return JSON.parse(originalData);
-            }
-        }
-    } catch (err) {
-        // console.error('Error getting data from storage boi boi');
-    }
+		// console.log(
+		//   'from getting data: ',
+		//   key,
+		//   'encryption-key',
+		//   typeof encryption_key,
+		//   encryption_key
+		// );
+		if (encryptionKey && shaKey) {
+			const ciphertext = JSON.parse(String(localStorage.getItem(shaKey)));
+			if (ciphertext) {
+				// Decrypt
+				const bytes = CryptoJS.AES.decrypt(ciphertext, encryptionKey);
+				const originalData = bytes.toString(CryptoJS.enc.Utf8);
+				// console.log('getting data: ', key, shaKey, originalData);
+				return JSON.parse(originalData);
+			}
+		}
+	} catch (err) {
+		// console.error('Error getting data from storage boi boi');
+	}
 }
 
 /**
  * Function to clear items from local storage
  * @param {(string|string[])} keys - key to remove or array of keys
  */
-export function clearStorage(keys: any[]) {
-    try {
-        if (Array.isArray(keys)) {
-            keys.forEach((key) => {
-                const shaKey = CryptoJS.SHA256(key).toString();
-                localStorage.removeItem(shaKey);
-            });
-        } else if (typeof keys === 'string') {
-            const shaKey = CryptoJS.SHA256(keys).toString();
-            localStorage.removeItem(shaKey);
-        }
-    } catch (err) {
-        console.error('Error clearing storage', err);
-    }
+// export function clearStorage(keys: string[]) {
+// 	try {
+// 		if (Array.isArray(keys)) {
+// 			keys.forEach((key) => {
+// 				const shaKey = CryptoJS.SHA256(key).toString();
+// 				localStorage.removeItem(shaKey);
+// 			});
+// 		} else if (typeof keys === "string") {
+// 			const shaKey = CryptoJS.SHA256(keys).toString();
+// 			localStorage.removeItem(shaKey);
+// 		}
+// 	} catch (err) {
+// 		console.error("Error clearing storage", err);
+// 	}
+// }
+export function clearStorage(keys: string[]) {
+	try {
+		if (Array.isArray(keys)) {
+			for (const key of keys) {
+				const shaKey = CryptoJS.SHA256(key).toString();
+				localStorage.removeItem(shaKey);
+			}
+		} else if (typeof keys === "string") {
+			const shaKey = CryptoJS.SHA256(keys).toString();
+			localStorage.removeItem(shaKey);
+		}
+	} catch (err) {
+		console.error("Error clearing storage", err);
+	}
 }

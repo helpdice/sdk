@@ -1,50 +1,48 @@
 {
-  "name": "@helpdice/sdk",
-  "type": "module",
-  "description": "A backend API-based SDK (Software Development Kit) provides developers with pre-built tools and libraries to interact seamlessly with a backend server or service. It simplifies the process of integrating external functionality, such as authentication, data storage, or third-party services, into applications. The SDK typically includes API endpoints, functions, and documentation, allowing developers to make requests, handle responses, and manage errors efficiently. By abstracting complex backend logic, it speeds up development, reduces coding errors, and ensures consistent interactions with the backend, making it easier to build scalable, secure, and feature-rich applications.",
-  "version": "0.0.1",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/helpdice/sdk.git"
-  },
-  "homepage": "https://sdk.helpdice.com",
-  "files": [
-    "dist/**/*"
-  ],
-  "scripts": {
-    "build": "tsc",
-    "check": "biome check --write ./src",
-    "workflow:check": "biome check ./src",
-    "release": "pnpm run build && changeset publish"
-  },
-  "author": "Helpdice Team",
-  "license": "MIT",
-  "devDependencies": {
-    "@biomejs/biome": "1.8.3",
-    "@changesets/cli": "^2.27.7",
-    "@total-typescript/tsconfig": "^1.0.4",
-    "@types/crypto-js": "^4.2.2",
-    "@types/js-cookie": "^3.0.6",
-    "@types/react": "^19.0.8",
-    "typescript": "^5.5.3"
-  },
-  "bugs": {
-    "url": "https://github.com/helpdice/sdk/issues"
-  },
-  "dependencies": {
-    "axios": "^1.7.9",
-    "crypto-js": "^4.2.0",
-    "firebase": "^11.2.0",
-    "fs": "^0.0.1-security",
-    "fs-extra": "^11.3.0",
-    "js-cookie": "^3.0.5",
-    "jwt-decode": "^4.0.0",
-    "next": "^15.1.6",
-    "nookies": "^2.5.2",
-    "swr": "^2.3.0",
-    "zod": "^3.24.1"
-  },
-  "packageManager": "pnpm@9.6.0+sha512.38dc6fba8dba35b39340b9700112c2fe1e12f10b17134715a4aa98ccf7bb035e76fd981cf0bb384dfa98f8d6af5481c2bef2f4266a24bfa20c34eb7147ce0b5e"
+	"name": "@helpdice/sdk",
+	"type": "module",
+	"description": "A backend API-based SDK (Software Development Kit) provides developers with pre-built tools and libraries to interact seamlessly with a backend server or service. It simplifies the process of integrating external functionality, such as authentication, data storage, or third-party services, into applications. The SDK typically includes API endpoints, functions, and documentation, allowing developers to make requests, handle responses, and manage errors efficiently. By abstracting complex backend logic, it speeds up development, reduces coding errors, and ensures consistent interactions with the backend, making it easier to build scalable, secure, and feature-rich applications.",
+	"version": "0.0.1",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/helpdice/sdk.git"
+	},
+	"homepage": "https://sdk.helpdice.com",
+	"files": ["dist/**/*"],
+	"scripts": {
+		"build": "tsc",
+		"check": "biome check --write ./src",
+		"workflow:check": "biome check ./src",
+		"release": "pnpm run build && changeset publish"
+	},
+	"author": "Helpdice Team",
+	"license": "MIT",
+	"devDependencies": {
+		"@biomejs/biome": "1.8.3",
+		"@changesets/cli": "^2.27.7",
+		"@total-typescript/tsconfig": "^1.0.4",
+		"@types/crypto-js": "^4.2.2",
+		"@types/js-cookie": "^3.0.6",
+		"@types/react": "^19.0.8",
+		"typescript": "^5.5.3"
+	},
+	"bugs": {
+		"url": "https://github.com/helpdice/sdk/issues"
+	},
+	"dependencies": {
+		"axios": "^1.7.9",
+		"crypto-js": "^4.2.0",
+		"firebase": "^11.2.0",
+		"fs": "^0.0.1-security",
+		"fs-extra": "^11.3.0",
+		"js-cookie": "^3.0.5",
+		"jwt-decode": "^4.0.0",
+		"next": "^15.1.6",
+		"nookies": "^2.5.2",
+		"swr": "^2.3.0",
+		"zod": "^3.24.1"
+	},
+	"packageManager": "pnpm@9.6.0+sha512.38dc6fba8dba35b39340b9700112c2fe1e12f10b17134715a4aa98ccf7bb035e76fd981cf0bb384dfa98f8d6af5481c2bef2f4266a24bfa20c34eb7147ce0b5e"
 }

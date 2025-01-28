@@ -1,13 +1,11 @@
 type Order = {
-    entity: any,
-    entityId: string,
-    orderId: string,
-    paymentType: string,
-    paymentService: string,
-    amount: string | number,
-    currency: string | number
-}
+	entity: object;
+	entityId: string;
+	orderId: string;
+	paymentType: string;
+	paymentService: string;
+	amount: string | number;
+	currency: string | number;
+};
 
-export type {
-    Order
-}
+export type { Order };
