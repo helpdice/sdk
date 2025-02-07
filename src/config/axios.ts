@@ -13,6 +13,8 @@ import type { AuthRequest, SignupRequest } from "../auth/types.js";
 import { getCookie } from "../utils/auth.js";
 import { Env } from "./Env.js";
 
+export const BASE_URL = Env.runtimeEnv.API_URL;
+
 export const http = axios.create({
 	baseURL: Env.runtimeEnv.API_URL,
 	withCredentials: true,

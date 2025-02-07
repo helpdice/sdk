@@ -1,8 +1,10 @@
+import { BASE_URL } from "../config/axios.js";
 import { getUrl } from "../config/route.js";
 
 const Assets = {
 	images: {
-		imagePlaceholder: getUrl("assets", "v1", "imagePlaceholder"),
+		imagePlaceholder: BASE_URL + getUrl("assets", "v1", "imagePlaceholder"),
+		avatar: BASE_URL + getUrl("assets", "v1", "avatar"),
 	},
 };
 
