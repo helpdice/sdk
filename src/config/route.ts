@@ -1,5 +1,6 @@
 import account from "../account/endpoint.js";
 import accounting from "../accounting/endpoint.js";
+import assets from "../assets/endpoint.js";
 import auth from "../auth/endpoint.js";
 import cms from "../content/endpoint.js";
 import support from "../support/endpoint.js";
@@ -20,6 +21,7 @@ const urls: Urls = {
 	account,
 	accounting,
 	support,
+	assets
 };
 
 // Function to get the URL dynamically based on category, version, and action

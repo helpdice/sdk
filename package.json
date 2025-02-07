@@ -2,7 +2,7 @@
 	"name": "@helpdice/sdk",
 	"type": "module",
 	"description": "A backend API-based SDK (Software Development Kit) provides developers with pre-built tools and libraries to interact seamlessly with a backend server or service. It simplifies the process of integrating external functionality, such as authentication, data storage, or third-party services, into applications. The SDK typically includes API endpoints, functions, and documentation, allowing developers to make requests, handle responses, and manage errors efficiently. By abstracting complex backend logic, it speeds up development, reduces coding errors, and ensures consistent interactions with the backend, making it easier to build scalable, secure, and feature-rich applications.",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"repository": {

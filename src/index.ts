@@ -8,4 +8,5 @@ export { default as Payment } from "./payment/index.js";
 export { default as Content } from "./content/index.js";
 export { default as Accounting } from "./accounting/index.js";
 export { default as Support } from "./support/index.js";
+export { default as Assets } from './assets/index.js';
 // export { useUser, usePrivate, useAuth } from './hooks';
