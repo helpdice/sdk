@@ -21,7 +21,7 @@ const urls: Urls = {
 	account,
 	accounting,
 	support,
-	assets
+	assets,
 };
 
 // Function to get the URL dynamically based on category, version, and action
