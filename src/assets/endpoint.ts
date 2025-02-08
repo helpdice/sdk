@@ -1,7 +1,7 @@
 const assets = {
 	v1: {
-		imagePlaceholder: "images/image-placeholder.png",
-		avatar: "images/avatar.png",
+		imagePlaceholder: "images/image-placeholder.webp",
+		avatar: "images/avatar.webp",
 	},
 };
 
