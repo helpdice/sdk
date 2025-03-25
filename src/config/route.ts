@@ -3,6 +3,7 @@ import accounting from "../accounting/endpoint.js";
 import assets from "../assets/endpoint.js";
 import auth from "../auth/endpoint.js";
 import cms from "../content/endpoint.js";
+import payment from "../payment/endpoint.js";
 import support from "../support/endpoint.js";
 
 interface CategoryUrls {
@@ -22,6 +23,7 @@ const urls: Urls = {
 	accounting,
 	support,
 	assets,
+	payment
 };
 
 // Function to get the URL dynamically based on category, version, and action
@@ -33,7 +35,9 @@ export function getUrl(
 	const categoryData = urls[category]; // Access the correct category dynamically
 	if (categoryData) {
 		const versionData = categoryData[version]; // Access the correct version dynamically
-		if (versionData?.[action]) {
+		console.log(versionData?.[action]);
+		if (versionData !== undefined) {
+			console.log(versionData[action]);
 			return `/api/${version}/${category}/${versionData[action]}`; // Construct the URL
 		}
 		throw new Error(

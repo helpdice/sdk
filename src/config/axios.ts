@@ -33,51 +33,6 @@ export const chttp = axios.create({
 	},
 });
 
-export const post = (
-	endpoint: string,
-	data?: unknown,
-	config?: AxiosRequestConfig<unknown>,
-): Promise<AxiosResponse> =>
-	new Promise((resolve, reject) =>
-		http
-			.post(endpoint, data, config)
-			.then(resolve)
-			.catch((e) => reject(e.response?.data)),
-	);
-
-export const get = (
-	endpoint: string,
-	config?: AxiosRequestConfig<unknown>,
-): Promise<AxiosResponse> =>
-	new Promise((resolve, reject) =>
-		http
-			.get(endpoint, config)
-			.then(resolve)
-			.catch((e) => reject(e.response?.data)),
-	);
-
-export const patch = <T>(endpoint: string, data: T): Promise<AxiosResponse> =>
-	new Promise((resolve, reject) =>
-		http
-			.patch(endpoint, data)
-			.then(resolve)
-			.catch((e) => reject(e.response.data)),
-	);
-
-export const login = (data: AuthRequest): Promise<AxiosResponse> =>
-	post("passport/basic/login", data);
-
-export const logout = (): Promise<AxiosResponse> => post("user/logout");
-
-export const passwordReset = (
-	data: Partial<AuthRequest>,
-): Promise<AxiosResponse> => post("user/reset-password", data);
-
-export const signup = (data: SignupRequest): Promise<AxiosResponse> =>
-	post("passport/basic/signup", data);
-
-/* For Client Side Handling */
-
 http.interceptors.request.use((config) => {
 	if (config.headers) {
 		config.headers["Content-Type"] = "application/json";
@@ -137,3 +92,63 @@ chttp.interceptors.response.use(
 		return Promise.reject(error);
 	},
 );
+
+
+export const post = (
+	endpoint: string,
+	data?: unknown,
+	config?: AxiosRequestConfig<unknown>,
+): Promise<AxiosResponse> =>
+	new Promise((resolve, reject) =>
+		http
+			.post(endpoint, data, config)
+			.then(resolve)
+			.catch((e) => reject(e.response?.data)),
+	);
+
+export const put = (
+	endpoint: string,
+	data?: unknown,
+	config?: AxiosRequestConfig<unknown>,
+): Promise<AxiosResponse> =>
+	new Promise((resolve, reject) =>
+		http
+			.put(endpoint, data, config)
+			.then(resolve)
+			.catch((e) => reject(e.response?.data)),
+	);
+
+export const get = (
+	endpoint: string,
+	config?: AxiosRequestConfig<unknown>,
+): Promise<AxiosResponse> => {
+	// console.log('Get Request Config :', config);
+	return new Promise((resolve, reject) =>
+		http
+			.get(endpoint, config)
+			.then(resolve)
+			.catch((e) => reject(e.response?.data)),
+	);
+}
+
+export const patch = <T>(endpoint: string, data: T): Promise<AxiosResponse> =>
+	new Promise((resolve, reject) =>
+		http
+			.patch(endpoint, data)
+			.then(resolve)
+			.catch((e) => reject(e.response.data)),
+	);
+
+export const login = (data: AuthRequest): Promise<AxiosResponse> =>
+	post("passport/basic/login", data);
+
+export const logout = (): Promise<AxiosResponse> => post("user/logout");
+
+export const passwordReset = (
+	data: Partial<AuthRequest>,
+): Promise<AxiosResponse> => post("user/reset-password", data);
+
+export const signup = (data: SignupRequest): Promise<AxiosResponse> =>
+	post("passport/basic/signup", data);
+
+/* For Client Side Handling */

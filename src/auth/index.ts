@@ -37,6 +37,34 @@ const Auth = {
 	getUserFromStrorage: () => {
 		return getDataFromStorage("accountInfo");
 	},
+	/**
+	 * Action to update stored admin info in the redux
+	 * @param {string | object} key key or an object with key: value of the fields to be updated
+	 * @param {any} value value of the field to be updated (only if the key passed is of type string)
+	 */
+	updateUserInfo: (key?: string | object, value?: any) => () => {
+		console.log('typeof key: ', typeof key, key);
+		try {
+			console.log(key);
+			const accountInfo = getDataFromStorage('accountInfo');
+			if (typeof key === 'object') {
+				let updatedInfo = { ...accountInfo };
+				Object.entries(key).forEach(([key, value]) => {
+					updatedInfo = { ...updatedInfo, [key]: value };
+				});
+				console.log(updatedInfo);
+				setDataInStorage('accountInfo', updatedInfo);
+			} else if (typeof key === 'string') {
+				if (value) {
+					setDataInStorage('accountInfo', { ...accountInfo, [key]: value });
+				} else {
+					console.error('Value is not provided for the given key to update admin info');
+				}
+			}
+		} catch (error) {
+			console.error('update logo action ', error);
+		}
+	},
 	isAuthenticated: (cookie?: boolean) => {
 		if (cookie) {
 			return isAuth();

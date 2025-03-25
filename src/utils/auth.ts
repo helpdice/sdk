@@ -3,6 +3,7 @@ import type { NextPageContext } from "next";
 import { parseCookies } from "nookies";
 
 export const getCookie = (key = "ACID"): string | undefined => {
+	// console.log(Cookies.get(key));
 	return Cookies.get(key);
 };
 

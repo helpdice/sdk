@@ -2,7 +2,9 @@ const accounting = {
 	v1: {
 		item: "item",
 		items: "items",
-		// articleCategories: "article/categories",
+		invoice: "invoice",
+		submit_invoice: "invoice/submit",
+		invoices: "invoices"
 	},
 };
 

@@ -17,4 +17,19 @@ type VerifyPayment = {
 	payment: unknown;
 };
 
+
+export interface SuccessProps {
+	data: unknown;
+	status: number;
+	statusText: string;
+}
+
+export interface StartSuccessProp {
+	_id: string;
+	options: {
+		handler: (res: unknown) => void;
+	};
+	method: string;
+}
+
 export type { Payment, Method, VerifyPayment };

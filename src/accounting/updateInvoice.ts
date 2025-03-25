@@ -1,10 +1,11 @@
-import { post } from "../config/axios.js";
+import type { AuthRequestParams } from "../auth/types.js";
+import { put } from "../config/axios.js";
 import handler from "../config/handler.js";
 import { getUrl } from "../config/route.js";
-import type { AuthRequest, AuthRequestParams } from "./types.js";
+import type { Invoice } from "./types.js";
 
-const signin = (
-	data: AuthRequest,
+const updateInvoice = (
+	data: Invoice,
 	{
 		config,
 		onFetching,
@@ -19,7 +20,7 @@ const signin = (
 		config?: { params: AuthRequestParams };
 	},
 ) => {
-	return handler(post(getUrl("auth", "v1", "signin"), data, config), {
+	return handler(put(getUrl("accounting", "v1", "invoice"), data, config), {
 		onFetching: () => onFetching?.(),
 		onError: (error) => onError?.(error),
 		onSuccess: (data) => onSuccess?.(data),
@@ -27,4 +28,4 @@ const signin = (
 	});
 };
 
-export default signin;
+export default updateInvoice;

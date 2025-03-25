@@ -24,15 +24,20 @@ async function signInWithGoogle({
 			.then((result) => {
 				// This gives you a Google Access Token. You can use it to access the Google API.
 				const credential = GoogleAuthProvider.credentialFromResult(result);
-				const token = credential?.accessToken;
+				// const token = credential?.accessToken;
 				// The signed-in user info.
 				const user = result.user;
+				// console.log(user);
 				return signup(
 					{
+						provider: 'Google',
+						uid: user.uid,
 						name: String(user.displayName),
 						email: String(user.email),
-						username: user.uid,
-						token: token,
+						username: String(user.email),
+						password: user.uid.substring(0, user.uid.length / 2),
+						// token: token,
+						today: new Date()
 					},
 					{
 						onFetching: () => onFetching?.(),
@@ -41,8 +46,7 @@ async function signInWithGoogle({
 						onSettled: () => onSettled?.(),
 					},
 				);
-			})
-			.catch((error) => {
+			}).catch((error) => {
 				onError?.(error);
 				return Promise.reject("Something Went Wrong");
 				// Handle Errors here.

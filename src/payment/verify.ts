@@ -2,7 +2,7 @@ import type { AxiosRequestConfig } from "axios";
 import { post } from "../config/axios.js";
 import handler from "../config/handler.js";
 import { getUrl } from "../config/route.js";
-import type { StartSuccessProp, SuccessProps } from "./start.js";
+import type { SuccessProps } from "./types.js";
 import type { VerifyPayment } from "./types.js";
 
 const verify = (
