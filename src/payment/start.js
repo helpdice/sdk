@@ -1,35 +1,42 @@
 import { post } from "../config/axios.js";
-import handler from "../config/handler.js";
 import { getUrl } from "../config/route.js";
+import handler from "../utils/handler.js";
 // import type { Order } from "../order/types.js";
 // import type { VerifyPayment } from "./types.js";
-import verify from "./verify.js";
+// import verify from "./verify.js";
 
-const start = (
+function start(
 	data,
-	{
-		config,
-		onFetching,
-		onSuccess,
-		onError,
-		onSettled,
+	{ config, onLoading, onSuccess, onError, onSettled } = {
+		config: null,
+		onLoading: (isLoading) => {},
+		onSuccess: (data) => {},
+		onError: (error) => {},
+		onSettled: () => {},
 	},
-) => {
-	return handler(post(getUrl("payment", "v1", "create"), {
-		...data, method: {
-			label: data.paymentService,
-			currency: data.currency
-		}
-	}, config), {
-		onFetching: () => onFetching?.(),
-		onError: (error) => onError?.(error),
-		onSuccess: (res) => {
-			const data = res.data;
+) {
+	return handler({
+		promise: post(
+			getUrl("payment", "v1", "create"),
+			{
+				...data,
+				method: {
+					label: data.paymentService,
+					currency: data.currency,
+				},
+			},
+			config,
+		),
+		onLoading,
+		onError,
+		onSuccess: (data) => {
 			if (data?.method === "Razor Pay") {
+				// eslint-disable-next-line
+				const rzp1 = new window.Razorpay(data.options);
 				const options = data.options;
 				options.handler = async (response) => {
-					console.log('Payment Success :', response);
-					onSuccess && onSuccess(response);
+					console.log("Payment Success :", response);
+					onSuccess(response);
 					// const validateRes = await fetch('http://localhost:5000/order/validate', {
 					//     method: 'POST',
 					//     body: JSON.stringify(body),
@@ -40,11 +47,9 @@ const start = (
 					// const jsonRes = await validateRes.json();
 					// console.log(jsonRes);
 				};
-				// eslint-disable-next-line
-				var rzp1 = new window.Razorpay(data.options);
-				rzp1.on('payment.failed', function (response) {
-					console.log('Payment Failed :', response);
-					onError && onError(response);
+				rzp1.on("payment.failed", (response) => {
+					// console.log('Payment Failed :', response);
+					onError(response);
 					// alert(response.error.code);
 					// alert(response.error.description);
 					// alert(response.error.source);
@@ -56,8 +61,8 @@ const start = (
 				rzp1.open();
 			}
 		},
-		onSettled: () => onSettled?.(),
+		onSettled,
 	});
-};
+}
 
 export default start;

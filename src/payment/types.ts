@@ -17,7 +17,6 @@ type VerifyPayment = {
 	payment: unknown;
 };
 
-
 export interface SuccessProps {
 	data: unknown;
 	status: number;

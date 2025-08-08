@@ -20,6 +20,8 @@ const Content = {
 		}),
 	mcqs: (config?: object | undefined) =>
 		get(getUrl("cms", "v1", "mcqs"), config),
+	allMcqs: (config?: object | undefined) =>
+		get(getUrl("cms", "v1", "all_mcqs"), config),
 	mcqsCategories: (config?: object | undefined) =>
 		get(getUrl("cms", "v1", "mcqCategories"), config),
 	qna: (slug: string) =>

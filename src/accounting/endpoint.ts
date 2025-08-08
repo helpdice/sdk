@@ -4,7 +4,9 @@ const accounting = {
 		items: "items",
 		invoice: "invoice",
 		submit_invoice: "invoice/submit",
-		invoices: "invoices"
+		invoices: "invoices",
+		item_categories: "item/category",
+		item_brands: "item/brand"
 	},
 };
 

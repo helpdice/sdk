@@ -11,7 +11,7 @@ const updateInvoice = (
 		onFetching,
 		onSuccess,
 		onError,
-		onSettled
+		onSettled,
 	}: {
 		onFetching?: () => void;
 		onSuccess?: (data: object) => void;

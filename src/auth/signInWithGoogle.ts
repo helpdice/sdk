@@ -30,14 +30,14 @@ async function signInWithGoogle({
 				// console.log(user);
 				return signup(
 					{
-						provider: 'Google',
+						provider: "Google",
 						uid: user.uid,
 						name: String(user.displayName),
 						email: String(user.email),
 						username: String(user.email),
 						password: user.uid.substring(0, user.uid.length / 2),
 						// token: token,
-						today: new Date()
+						today: new Date(),
 					},
 					{
 						onFetching: () => onFetching?.(),
@@ -46,7 +46,8 @@ async function signInWithGoogle({
 						onSettled: () => onSettled?.(),
 					},
 				);
-			}).catch((error) => {
+			})
+			.catch((error) => {
 				onError?.(error);
 				return Promise.reject("Something Went Wrong");
 				// Handle Errors here.

@@ -4,6 +4,7 @@ import assets from "../assets/endpoint.js";
 import auth from "../auth/endpoint.js";
 import cms from "../content/endpoint.js";
 import payment from "../payment/endpoint.js";
+import inventory from "../inventory/endpoint.js";
 import support from "../support/endpoint.js";
 
 interface CategoryUrls {
@@ -23,7 +24,8 @@ const urls: Urls = {
 	accounting,
 	support,
 	assets,
-	payment
+	payment,
+	inventory
 };
 
 // Function to get the URL dynamically based on category, version, and action

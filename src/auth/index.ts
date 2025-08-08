@@ -11,13 +11,14 @@ import logout from "./logout.js";
 import signInWithGoogle from "./signInWithGoogle.js";
 import signIn from "./signin.js";
 import signUp from "./signup.js";
+import { Env } from "../config/Env.js";
 
 const Auth = {
 	signIn,
 	signUp,
 	signInWithGoogle,
 	saveTokenToCookie: (token: string) => {
-		cookie.set("ACID", token, { expires: 900000 });
+		cookie.set(Env.runtimeEnv.TOKEN_KEY!, token, { expires: 900000 });
 		window.location.href = "/";
 	},
 	saveTokenToStorage: (token: string) => {
@@ -43,26 +44,29 @@ const Auth = {
 	 * @param {any} value value of the field to be updated (only if the key passed is of type string)
 	 */
 	updateUserInfo: (key?: string | object, value?: any) => () => {
-		console.log('typeof key: ', typeof key, key);
+		console.log("typeof key: ", typeof key, key);
 		try {
 			console.log(key);
-			const accountInfo = getDataFromStorage('accountInfo');
-			if (typeof key === 'object') {
+			const accountInfo = getDataFromStorage("accountInfo");
+			if (typeof key === "object") {
 				let updatedInfo = { ...accountInfo };
-				Object.entries(key).forEach(([key, value]) => {
-					updatedInfo = { ...updatedInfo, [key]: value };
-				});
+				// for..of
+				for (const [ky, value] of Object.entries(key)) {
+					updatedInfo = { ...updatedInfo, [ky]: value };
+				}
 				console.log(updatedInfo);
-				setDataInStorage('accountInfo', updatedInfo);
-			} else if (typeof key === 'string') {
+				setDataInStorage("accountInfo", updatedInfo);
+			} else if (typeof key === "string") {
 				if (value) {
-					setDataInStorage('accountInfo', { ...accountInfo, [key]: value });
+					setDataInStorage("accountInfo", { ...accountInfo, [key]: value });
 				} else {
-					console.error('Value is not provided for the given key to update admin info');
+					console.error(
+						"Value is not provided for the given key to update admin info",
+					);
 				}
 			}
 		} catch (error) {
-			console.error('update logo action ', error);
+			console.error("update logo action ", error);
 		}
 	},
 	isAuthenticated: (cookie?: boolean) => {

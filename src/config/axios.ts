@@ -93,7 +93,6 @@ chttp.interceptors.response.use(
 	},
 );
 
-
 export const post = (
 	endpoint: string,
 	data?: unknown,
@@ -129,7 +128,7 @@ export const get = (
 			.then(resolve)
 			.catch((e) => reject(e.response?.data)),
 	);
-}
+};
 
 export const patch = <T>(endpoint: string, data: T): Promise<AxiosResponse> =>
 	new Promise((resolve, reject) =>
