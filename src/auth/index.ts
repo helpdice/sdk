@@ -12,10 +12,12 @@ import signInWithGoogle from "./signInWithGoogle.js";
 import signIn from "./signin.js";
 import signUp from "./signup.js";
 import { Env } from "../config/Env.js";
+import register from "./register.js";
 
 const Auth = {
 	signIn,
 	signUp,
+	register,
 	signInWithGoogle,
 	saveTokenToCookie: (token: string) => {
 		cookie.set(Env.runtimeEnv.TOKEN_KEY!, token, { expires: 900000 });

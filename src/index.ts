@@ -14,4 +14,5 @@ export { default as Assets } from "./assets/index.js";
 export { default as Account } from "./account/index.js";
 export { default as shareUrl } from "./utils/share.js";
 export { default as Inventory } from "./inventory/index.js";
+export { default as Tools } from './tools/index.js';
 // export { useUser, usePrivate, useAuth } from './hooks';
