@@ -3,8 +3,8 @@ import accounting from "../accounting/endpoint.js";
 import assets from "../assets/endpoint.js";
 import auth from "../auth/endpoint.js";
 import cms from "../content/endpoint.js";
-import payment from "../payment/endpoint.js";
 import inventory from "../inventory/endpoint.js";
+import payment from "../payment/endpoint.js";
 import support from "../support/endpoint.js";
 import tools from "../tools/endpoint.js";
 
@@ -27,7 +27,7 @@ const urls: Urls = {
 	assets,
 	payment,
 	inventory,
-	tools
+	tools,
 };
 
 // Function to get the URL dynamically based on category, version, and action

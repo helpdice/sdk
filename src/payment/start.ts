@@ -37,7 +37,7 @@ function start(
 		onError = () => {},
 		onSettled = () => {},
 	}: StartOptions = {},
-): void {
+) {
 	return handler({
 		promise: post(
 			getUrl("payment", "v1", "create"),
@@ -60,13 +60,10 @@ function start(
 					onSuccess(response);
 					// Validation call (if needed)
 				};
-
 				const rzp1 = new window.Razorpay(options);
-
 				rzp1.on("payment.failed", (response: any) => {
 					onError(response);
 				});
-
 				rzp1.open();
 			}
 		},

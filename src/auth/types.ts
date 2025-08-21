@@ -16,6 +16,7 @@ interface SignupRequest extends AuthRequest {
 	image_url?: string;
 	name?: string;
 	token?: string;
+	trial?: boolean;
 	apiKey?: boolean;
 	today?: Date;
 }

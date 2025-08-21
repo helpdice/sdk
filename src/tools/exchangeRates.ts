@@ -15,10 +15,12 @@ const exchangeRates = (
 		onSuccess?: (data: object) => void;
 		onError?: (error: string) => void;
 		onSettled?: () => void;
-		config?: { params: {
-            from?: string;
-            to?: string;
-        } };
+		config?: {
+			params: {
+				from?: string;
+				to?: string;
+			};
+		};
 	},
 ) => {
 	return handler(get(getUrl("tools", "v1", "exchangeRates"), config), {

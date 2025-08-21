@@ -1,6 +1,6 @@
 const tools = {
 	v1: {
-		exchangeRates: "exchange-rates"
+		exchangeRates: "exchange-rates",
 	},
 };
 

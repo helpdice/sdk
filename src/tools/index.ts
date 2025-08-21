@@ -1,7 +1,7 @@
 import exchangeRates from "./exchangeRates.js";
 
 const Tools = {
-    exchangeRates
-}
+	exchangeRates,
+};
 
 export default Tools;

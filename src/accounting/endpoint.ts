@@ -6,7 +6,7 @@ const accounting = {
 		submit_invoice: "invoice/submit",
 		invoices: "invoices",
 		item_categories: "item/category",
-		item_brands: "item/brand"
+		item_brands: "item/brand",
 	},
 };
 

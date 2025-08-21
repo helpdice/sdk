@@ -1,6 +1,7 @@
 import cookie from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import type { NextPageContext } from "next";
+import { Env } from "../config/Env.js";
 import { getCookie, getServerSideToken, isAuth } from "../utils/auth.js";
 import {
 	getDataFromStorage,
@@ -8,11 +9,10 @@ import {
 	setEncryptionKey,
 } from "../utils/localStorage.js";
 import logout from "./logout.js";
+import register from "./register.js";
 import signInWithGoogle from "./signInWithGoogle.js";
 import signIn from "./signin.js";
 import signUp from "./signup.js";
-import { Env } from "../config/Env.js";
-import register from "./register.js";
 
 const Auth = {
 	signIn,
@@ -20,7 +20,9 @@ const Auth = {
 	register,
 	signInWithGoogle,
 	saveTokenToCookie: (token: string) => {
-		cookie.set(Env.runtimeEnv.TOKEN_KEY!, token, { expires: 900000 });
+		if (Env.runtimeEnv.TOKEN_KEY) {
+			cookie.set(Env.runtimeEnv.TOKEN_KEY, token, { expires: 900000 });
+		}
 		window.location.href = "/";
 	},
 	saveTokenToStorage: (token: string) => {

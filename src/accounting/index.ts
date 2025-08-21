@@ -18,10 +18,8 @@ const Accounting = {
 	invoices: (config?: object | undefined) =>
 		get(getUrl("accounting", "v1", "invoices"), config),
 	submitInvoice,
-	itemCategories: () =>
-		get(getUrl("accounting", "v1", "item_categories")),
-	itemBrands: () =>
-		get(getUrl("accounting", "v1", "item_brands")),
+	itemCategories: () => get(getUrl("accounting", "v1", "item_categories")),
+	itemBrands: () => get(getUrl("accounting", "v1", "item_brands")),
 };
 
 export default Accounting;
